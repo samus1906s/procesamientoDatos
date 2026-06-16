@@ -1,6 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors'
+import { calcularCobro } from './controllers/parqueo.controller.js';
+
+import parqueoRoutes from './routes/parqueo.routes.js'
 
 dotenv.config();
 
@@ -68,6 +71,8 @@ res.json({
 });
 
 });
+
+app.use("/api/parqueo", parqueoRoutes)
 
 app.listen(PORT, () => {
   console.log(`API ejecutándose en http://localhost:${PORT}`);
