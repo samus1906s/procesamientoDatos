@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors'
 
 dotenv.config();
 
@@ -10,9 +11,17 @@ const PORT = process.env.SERVER_PORT || 4000;
 
 const app = express();
 
+app.use(cors());
+app.use(express.json());
+
 
 app.get( '/', (reg, res) => {
-    res.send( '<h1>Servidor funcionando</h1>')
+    res.json({
+        name: NAME,
+        version: VERSION,
+        description: DESCRIPTION,
+        puerto: PORT
+    })
 });
 
 app.listen(PORT, () => {
